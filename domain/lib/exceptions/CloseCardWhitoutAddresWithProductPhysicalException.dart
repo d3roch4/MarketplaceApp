@@ -1,0 +1,3 @@
+
+class CloseCardWhitoutAddresWithProductPhysicalException implements Exception {
+}
