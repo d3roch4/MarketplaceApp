@@ -1,8 +1,8 @@
-import 'package:domain/entities/Address.dart';
-import 'package:domain/entities/Entity.dart';
-import 'package:domain/events/OrderCreateEvent.dart';
+import 'package:domain/entities/address.dart';
+import 'package:domain/entities/entity.dart';
+import 'package:domain/events/order_create_event.dart';
 
-import 'ChosenProduct.dart';
+import 'chosen_product.dart';
 
 class Order extends Entity {
   String cartId;

@@ -4,11 +4,11 @@
 
 import 'dart:async' as _i7;
 
-import 'package:application/repository/CartRepository.dart' as _i6;
-import 'package:application/services/DomainEventService.dart' as _i3;
-import 'package:application/services/IUserManagerService.dart' as _i5;
-import 'package:domain/entities/Cart.dart' as _i4;
-import 'package:domain/entities/User.dart' as _i2;
+import 'package:application/repository/cart_repository.dart' as _i6;
+import 'package:application/services/domain_event_service.dart' as _i3;
+import 'package:application/services/user_manager_service.dart';
+import 'package:domain/entities/cart.dart' as _i4;
+import 'package:domain/entities/user.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: avoid_redundant_argument_values
@@ -27,11 +27,10 @@ class _FakeDomainEventService_1 extends _i1.Fake
 
 class _FakeCart_2 extends _i1.Fake implements _i4.Cart {}
 
-/// A class which mocks [IUserManagerService].
+/// A class which mocks [UserManagerService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockIUserManagerService extends _i1.Mock
-    implements _i5.IUserManagerService {
+class MockIUserManagerService extends _i1.Mock implements UserManagerService {
   MockIUserManagerService() {
     _i1.throwOnMissingStub(this);
   }

@@ -1,9 +1,9 @@
-import 'package:domain/entities/Address.dart';
-import 'package:domain/entities/ChosenProduct.dart';
-import 'package:domain/events/CartClosedEvent.dart';
-import 'package:domain/exceptions/CloseCardWhitoutAddresWithProductPhysicalException.dart';
-import 'Entity.dart';
-import 'Product.dart';
+import 'package:domain/entities/chosen_product.dart';
+import 'package:domain/events/cart_closed_event.dart';
+import 'package:domain/exceptions/close_card_whitout_addres_with_product_physical_exception.dart';
+
+import 'address.dart';
+import 'entity.dart';
 
 class Cart extends Entity {
   String buyerId;

@@ -1,5 +1,5 @@
-import 'Employee.dart';
-import 'Entity.dart';
+import 'employee.dart';
+import 'entity.dart';
 
 class Store extends Entity {
   String name;

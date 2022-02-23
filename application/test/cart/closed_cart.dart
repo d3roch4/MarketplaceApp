@@ -1,15 +1,15 @@
-import 'package:application/cart/AddProductToCart.dart';
-import 'package:application/cart/PaymentOfCart.dart';
-import 'package:application/repository/CartRepository.dart';
-import 'package:application/repository/OrderRepository.dart';
-import 'package:application/repository/ProductRepository.dart';
-import 'package:application/repository/StoreRepository.dart';
-import 'package:application/services/IUserManagerService.dart';
+import 'package:application/cart/add_product_to_cart.dart';
+import 'package:application/cart/payment_of_cart.dart';
+import 'package:application/repository/cart_repository.dart';
+import 'package:application/repository/order_repository.dart';
+import 'package:application/repository/product_repository.dart';
+import 'package:application/repository/store_repository.dart';
+import 'package:application/services/user_manager_service.dart';
 import 'package:cqrs_mediator/cqrs_mediator.dart';
-import 'package:domain/entities/Address.dart';
-import 'package:domain/entities/Cart.dart';
-import 'package:domain/entities/Product.dart';
-import 'package:domain/entities/Store.dart';
+import 'package:domain/entities/address.dart';
+import 'package:domain/entities/cart.dart';
+import 'package:domain/entities/product.dart';
+import 'package:domain/entities/store.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
 
@@ -34,7 +34,7 @@ Future<void> closeCartTest() async {
         ..id = 'productId2'
         ..stockCount = 10);
 
-  var user = Get.find<IUserManagerService>().currentUser();
+  var user = await Get.find<UserManagerService>().loadUser();
   var cart = await Get.find<CartRepository>().getOpenedOrNew(user);
   cart.shippingAddress = Address(
       zipCode: 'zipCode',

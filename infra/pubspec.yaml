@@ -14,7 +14,9 @@ dependencies:
     path: ../domain
   application:
     path: ../application
-  get:
+
+  get: ^4.6.1
+  parse_server_sdk_flutter: ^3.1.0
 
 dev_dependencies:
   flutter_test:

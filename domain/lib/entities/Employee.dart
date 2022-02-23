@@ -1,11 +1,11 @@
-import 'Entity.dart';
-import 'User.dart';
+import 'entity.dart';
+import 'user.dart';
 
 class Employee extends Entity {
-  User user;
+  String userId;
   EmployeeType type;
 
-  Employee({required this.user, required this.type});
+  Employee({required this.userId, required this.type});
 }
 
 enum EmployeeType { unknow, owner, seller, manager, stockist }

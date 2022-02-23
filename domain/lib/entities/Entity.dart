@@ -1,4 +1,4 @@
-import 'package:domain/events/DomainEvent.dart';
+import 'package:domain/events/domain_event.dart';
 
 class Entity {
   String? id;

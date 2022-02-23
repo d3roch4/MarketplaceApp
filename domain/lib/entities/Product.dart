@@ -1,5 +1,5 @@
-import 'Entity.dart';
-import 'Money.dart';
+import 'entity.dart';
+import 'money.dart';
 
 class Product extends Entity {
   String name;
