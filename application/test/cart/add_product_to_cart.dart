@@ -2,7 +2,6 @@ import 'package:application/cart/add_product_to_cart.dart';
 import 'package:application/repository/product_repository.dart';
 import 'package:cqrs_mediator/cqrs_mediator.dart';
 import 'package:domain/entities/cart.dart';
-import 'package:domain/entities/Money.dart';
 import 'package:domain/entities/product.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';

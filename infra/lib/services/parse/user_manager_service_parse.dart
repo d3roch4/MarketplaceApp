@@ -6,22 +6,26 @@ import 'package:async/async.dart';
 
 class UserManagerServiceParse extends UserManagerService {
   @override
-  Future<User> loadUser() {
-    // TODO: implement loadUser
-    throw UnimplementedError();
+  Future<User?> loadUser() async {
+    var obj = await ParseUser.currentUser();
+    if (obj == null) return null;
+    current = UserRepositoryParse.objToUser(obj);
+    return current!;
   }
 
   @override
   Future<Result<bool>> signIn(String username, String password) async {
     final user = ParseUser(username, password, null);
     var response = await user.login();
-    if (response.success) {
-      current = UserRepositoryParse.objToUser(user);
-      return Result.value(true);
-    } else if (response.error != null) {
-      return Result.error(response.error!.message);
+    if (!response.success) {
+      if (response.error != null) {
+        return Result.error(response.error!.message);
+      } else {
+        return Result.value(false);
+      }
     }
-    return Result.value(false);
+    loadUser();
+    return Result.value(true);
   }
 
   @override
@@ -31,7 +35,15 @@ class UserManagerServiceParse extends UserManagerService {
     userObj.set('name', user.name);
     if (user.phone != null) userObj.set('phone', user.phone);
     var result = await userObj.save();
-    if (result.success) return Result.value(true);
-    return Result.error(result.error!.message);
+    if (!result.success) return Result.error(result.error!.message);
+    await loadUser();
+    return Result.value(true);
+  }
+
+  @override
+  Future<void> loggout() async {
+    ParseUser obj = await ParseUser.currentUser();
+    await obj.logout();
+    current = null;
   }
 }

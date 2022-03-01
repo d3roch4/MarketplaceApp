@@ -11,7 +11,8 @@ class Store extends Entity {
       required this.name,
       required this.marketplaceId,
       required this.emailToNotifications,
-      String? id}) {
+      String? id,
+      this.employees = const []}) {
     this.id = id;
   }
 }

@@ -10,6 +10,7 @@ import 'package:turbine/pages/login/sign_in.dart';
 import 'package:turbine/pages/login/sign_up.dart';
 import 'package:turbine/pages/not_found_page.dart';
 import 'package:turbine/pages/store/create_store_page.dart';
+import 'package:turbine/pages/store/edit_store_page.dart';
 import 'package:turbine/pages/store/manager_store_page.dart';
 import 'package:turbine/pages/store/manager_stores_list_page.dart';
 import 'package:turbine/theme_app.dart';
@@ -45,6 +46,7 @@ class MyApp extends StatelessWidget {
       defaultTransition: Transition.leftToRight,
       getPages: [
         GetPage(name: '/', page: () => MainPage(selectedIndex: 0)),
+        GetPage(name: '/settings', page: () => MainPage(selectedIndex: 1)),
         GetPage(name: '/login/signin', page: () => SignIn()),
         GetPage(name: '/login/signup', page: () => SignUp()),
         GetPage(
@@ -52,8 +54,9 @@ class MyApp extends StatelessWidget {
         GetPage(
             name: '/admin/marketplaces/add',
             page: () => CreateEditMarketplacePage()),
-        GetPage(name: '/manager-stores', page: ()=> ManagerStoresListPage()),
-        GetPage(name: '/manager-stores/add', page: ()=> CreateStorePage()),
+        GetPage(name: '/manager-stores', page: () => ManagerStoresListPage()),
+        GetPage(name: '/manager-stores/add', page: () => CreateStorePage()),
+        GetPage(name: '/manager-stores/:id/edit', page: () => EditStorePage(Get.parameters['id'])),
       ],
       unknownRoute: GetPage(name: '/not-found', page: () => NotFoundPage()),
     );

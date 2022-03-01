@@ -3,10 +3,16 @@ import 'package:domain/entities/store.dart';
 import 'package:domain/entities/user.dart';
 import 'package:infra/repository/memory/repository_base_memory.dart';
 
-class StoreRepositoryMemory extends StoreRepository
-    with RepositoryBaseMemory<Store> {
+class StoreRepositoryMemory extends RepositoryBaseMemory<Store> implements StoreRepository{
   @override
-  Future<List<Store>> getByUser(User? current) async {
-    return <Store>[];
+  Future<List<Store>> getStoresByUser(User current) {
+    // TODO: implement getStoresByUser
+    throw UnimplementedError();
+  }
+
+  @override
+  Stream<List<Store>> getStoresByUserStream(User current) {
+    // TODO: implement getStoresByUserStream
+    throw UnimplementedError();
   }
 }

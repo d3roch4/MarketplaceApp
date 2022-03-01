@@ -7,7 +7,9 @@ class MarketplaceManagerServiceParse extends MarketplaceManagerService {
   MarketplaceRepository repository;
   Marketplace? current;
 
-  MarketplaceManagerServiceParse(this.repository);
+  MarketplaceManagerServiceParse(this.repository) {
+    currentMarketplace();
+  }
 
   @override
   Future<Marketplace?> currentMarketplace() async {

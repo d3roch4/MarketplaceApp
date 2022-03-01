@@ -22,6 +22,7 @@ class Application {
     Get.create(() => SendEmailForStoreWheCartClosed(Get.find(), Get.find()));
     Get.create(() => CreateOrderWheCartClosed(Get.find(), Get.find()));
     Get.create(() => GetStoresByUserHandle(Get.find(), Get.find()));
+    Get.create(() => CreateStoreHandle(Get.find(), Get.find(), Get.find()));
 
     mediator.registerHandler(() => Get.find<AddProductToCartHandle>());
     mediator.registerHandler(() => Get.find<PaymentOfCartHandle>());
@@ -30,5 +31,6 @@ class Application {
     mediator.registerHandler(() => Get.find<GetStoresByUserHandle>());
     mediator.registerHandler(() => Get.find<CreateStoreHandle>());
     mediator.registerHandler(() => Get.find<GetStoresByUserHandle>());
+    mediator.registerHandler(() => Get.find<CreateStoreHandle>());
   }
 }

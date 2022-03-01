@@ -3,19 +3,19 @@ import 'package:application/services/user_manager_service.dart';
 import 'package:cqrs_mediator/cqrs_mediator.dart';
 import 'package:domain/entities/store.dart';
 
-class GetStoresByUserQuery extends IAsyncQuery<List<Store>> {}
+class GetStoresByUserQuery extends IQuery<Stream<List<Store>>> {}
 
 class GetStoresByUserHandle
-    extends IAsyncQueryHandler<List<Store>, GetStoresByUserQuery> {
+    extends IQueryHandler<Stream<List<Store>>, GetStoresByUserQuery> {
   StoreRepository storesRepo;
   UserManagerService userManager;
 
   GetStoresByUserHandle(this.storesRepo, this.userManager);
 
   @override
-  Future<List<Store>> call(GetStoresByUserQuery command) async {
-    if (userManager.current == null)
+  Stream<List<Store>> call(GetStoresByUserQuery command) async* {
+    if (await userManager.loadUser() == null)
       throw AssertionError('Current user is null');
-    return storesRepo.getByUser(userManager.current!);
+    yield* storesRepo.getStoresByUserStream(userManager.current!);
   }
 }

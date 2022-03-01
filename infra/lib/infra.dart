@@ -34,9 +34,9 @@ class Infra {
     Get.create<StoreRepository>(() => StoreRepositoryParse());
     Get.create<MarketplaceRepository>(() => MarketplaceRepositoryParse());
     Get.create<ProductRepository>(() => ProductRepositoryParse());
-    Get.put<MarketplaceManagerService>(
+    Get.lazyPut<MarketplaceManagerService>(()=>
         MarketplaceManagerServiceParse(Get.find()));
-    Get.put<UserManagerService>(UserManagerServiceParse());
+    Get.lazyPut<UserManagerService>(()=> UserManagerServiceParse());
   }
 
   static void useMemory() {

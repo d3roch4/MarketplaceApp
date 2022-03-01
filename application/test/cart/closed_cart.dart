@@ -35,7 +35,7 @@ Future<void> closeCartTest() async {
         ..stockCount = 10);
 
   var user = await Get.find<UserManagerService>().loadUser();
-  var cart = await Get.find<CartRepository>().getOpenedOrNew(user);
+  var cart = await Get.find<CartRepository>().getOpenedOrNew(user!);
   cart.shippingAddress = Address(
       zipCode: 'zipCode',
       street: 'street',

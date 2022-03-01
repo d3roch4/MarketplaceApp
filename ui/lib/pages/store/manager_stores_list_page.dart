@@ -13,8 +13,8 @@ class ManagerStoresListPage extends StatelessWidget {
       appBar: AppBar(
         title: Text("Manager stores".tr),
       ),
-      body: LoaddingWidget.future<List<Store>>(
-          future: Mediator.instance.run(GetStoresByUserQuery()),
+      body: LoaddingWidget.stream<List<Store>>(
+          stream: Mediator.instance.run(GetStoresByUserQuery()),
           builder: (list) {
             if (list == null) return empty();
             return ListView.separated(
@@ -23,6 +23,7 @@ class ManagerStoresListPage extends StatelessWidget {
                 return ListTile(
                   title: Text(item.name),
                   subtitle: Text(item.emailToNotifications),
+                  onTap: () => Get.toNamed('/manager-stores/${item.id}/edit'),
                 );
               },
               itemCount: list.length,
