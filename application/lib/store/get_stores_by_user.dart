@@ -1,4 +1,4 @@
-import 'package:application/repository/store_repository.dart';
+import 'package:domain/repository/store_repository.dart';
 import 'package:application/services/user_manager_service.dart';
 import 'package:cqrs_mediator/cqrs_mediator.dart';
 import 'package:domain/entities/store.dart';

@@ -13,6 +13,7 @@ import 'package:turbine/pages/store/create_store_page.dart';
 import 'package:turbine/pages/store/edit_store_page.dart';
 import 'package:turbine/pages/store/manager_store_page.dart';
 import 'package:turbine/pages/store/manager_stores_list_page.dart';
+import 'package:turbine/pages/store/store_panel_page.dart';
 import 'package:turbine/theme_app.dart';
 import 'package:turbine/utils/messages_translations.dart';
 import 'configure.dart' if (dart.library.html) 'configure_web.dart';
@@ -56,6 +57,7 @@ class MyApp extends StatelessWidget {
             page: () => CreateEditMarketplacePage()),
         GetPage(name: '/manager-stores', page: () => ManagerStoresListPage()),
         GetPage(name: '/manager-stores/add', page: () => CreateStorePage()),
+        GetPage(name: '/manager-stores/:id', page: () => StorePanelPage()),
         GetPage(name: '/manager-stores/:id/edit', page: () => EditStorePage(Get.parameters['id'])),
       ],
       unknownRoute: GetPage(name: '/not-found', page: () => NotFoundPage()),

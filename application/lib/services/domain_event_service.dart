@@ -2,8 +2,9 @@ import 'package:application/events/domain_event_notification.dart';
 import 'package:cqrs_mediator/cqrs_mediator.dart';
 import 'package:domain/events/cart_closed_event.dart';
 import 'package:domain/events/domain_event.dart';
+import 'package:domain/services/domain_event_service.dart';
 
-class DomainEventService {
+class ApplicationEventService implements DomainEventService{
   Future<void> call(DomainEvent event) async {
     var notification = createNotification(event);
     if (notification == null) return;
@@ -11,7 +12,7 @@ class DomainEventService {
     await Future.wait(Mediator.instance.runAll(notification));
   }
 
-  Future<void> callAll(List<DomainEvent> domainEvents) async {
+  Future callAll(List<DomainEvent> domainEvents) async {
     for (var event in domainEvents) {
       await call(event);
     }

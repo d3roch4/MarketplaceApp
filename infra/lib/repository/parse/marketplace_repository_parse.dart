@@ -1,11 +1,14 @@
 import 'dart:async';
 
-import 'package:application/repository/marketplace_repository.dart';
+import 'package:domain/repository/marketplace_repository.dart';
 import 'package:domain/entities/marketplace.dart';
+import 'package:domain/services/domain_event_service.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 import 'package:get/get.dart';
 
 class MarketplaceRepositoryParse extends MarketplaceRepository {
+  MarketplaceRepositoryParse(DomainEventService eventService) : super(eventService);
+
   ParseObject get parseObject => ParseObject('Marketplace');
 
   @override

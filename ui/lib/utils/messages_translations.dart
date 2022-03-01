@@ -40,6 +40,7 @@ class MessagesTranslations extends Translations {
           'Add': 'Adicionar',
           'Please provide an valid email': 'Por favor, informe um e-mail válido',
           'Add yours products': 'Adicione seus produtos',
+          "Not found": "Não encontrado"
         }
       };
 }

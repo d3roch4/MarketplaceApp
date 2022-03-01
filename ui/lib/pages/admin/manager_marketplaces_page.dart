@@ -1,4 +1,4 @@
-import 'package:application/repository/marketplace_repository.dart';
+import 'package:domain/repository/marketplace_repository.dart';
 import 'package:domain/entities/marketplace.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

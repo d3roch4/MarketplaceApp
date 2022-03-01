@@ -1,4 +1,4 @@
-import 'package:application/repository/store_repository.dart';
+import 'package:domain/repository/store_repository.dart';
 import 'package:domain/entities/store.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -23,7 +23,7 @@ class ManagerStoresListPage extends StatelessWidget {
                 return ListTile(
                   title: Text(item.name),
                   subtitle: Text(item.emailToNotifications),
-                  onTap: () => Get.toNamed('/manager-stores/${item.id}/edit'),
+                  onTap: () => Get.toNamed('/manager-stores/${item.id}', arguments: item),
                 );
               },
               itemCount: list.length,

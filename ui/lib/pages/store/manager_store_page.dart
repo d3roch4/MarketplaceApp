@@ -1,5 +1,5 @@
-import 'package:application/repository/product_repository.dart';
-import 'package:application/repository/store_repository.dart';
+import 'package:domain/repository/product_repository.dart';
+import 'package:domain/repository/store_repository.dart';
 import 'package:domain/entities/product.dart';
 import 'package:domain/entities/store.dart';
 import 'package:flutter/material.dart';

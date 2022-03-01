@@ -1,4 +1,4 @@
-import 'package:application/repository/store_repository.dart';
+import 'package:domain/repository/store_repository.dart';
 import 'package:application/services/marketplace_manager_service.dart';
 import 'package:application/services/user_manager_service.dart';
 import 'package:cqrs_mediator/cqrs_mediator.dart';
@@ -15,7 +15,8 @@ class CreateStoreHandle extends IAsyncCommandHandler<CreateStoreCommand> {
   MarketplaceManagerService marketplaceManager;
   UserManagerService userManager;
 
-  CreateStoreHandle(this.storeRepository, this.marketplaceManager, this.userManager);
+  CreateStoreHandle(
+      this.storeRepository, this.marketplaceManager, this.userManager);
 
   @override
   Future call(CreateStoreCommand command) async {
@@ -24,18 +25,16 @@ class CreateStoreHandle extends IAsyncCommandHandler<CreateStoreCommand> {
     if (command.email.isEmpty)
       throw ArgumentError('The email ir required', 'email');
     var user = await userManager.loadUser();
-    if(user?.id == null) throw AssertionError('Current user is null');
+    if (user?.id == null) throw AssertionError('Current user is null');
     var marketplace = await marketplaceManager.currentMarketplace();
-    if(marketplace?.id == null) throw AssertionError('Current marketplace is null');
+    if (marketplace?.id == null)
+      throw AssertionError('Current marketplace is null');
 
     var store = Store(
         name: command.name,
         marketplaceId: marketplace!.id!,
         emailToNotifications: command.email,
-        employees: [Employee(
-          userId: user!.id!,
-          type: EmployeeType.owner
-        )]);
+        employees: [Employee(userId: user!.id!, type: EmployeeType.owner)]);
     return await storeRepository.save(store);
   }
 }

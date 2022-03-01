@@ -1,5 +1,5 @@
 import 'package:application/services/marketplace_manager_service.dart';
-import 'package:application/repository/marketplace_repository.dart';
+import 'package:domain/repository/marketplace_repository.dart';
 import 'package:domain/entities/marketplace.dart';
 import 'package:get/get.dart';
 

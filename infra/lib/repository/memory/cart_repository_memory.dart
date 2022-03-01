@@ -1,12 +1,17 @@
 import 'dart:math';
 
-import 'package:application/repository/cart_repository.dart';
+import 'package:domain/repository/cart_repository.dart';
 import 'package:domain/entities/user.dart';
 import 'package:domain/entities/cart.dart';
+import 'package:domain/services/domain_event_service.dart';
 import 'package:infra/repository/memory/repository_base_memory.dart';
 
 class CartRepositoryMemory extends CartRepository {
-  var memory = RepositoryBaseMemory<Cart>();
+  late RepositoryBaseMemory<Cart> memory;
+
+  CartRepositoryMemory(DomainEventService eventService) : super(eventService){
+    memory = RepositoryBaseMemory<Cart>(eventService);
+  }
 
   @override
   Future<Cart?> findOpenedByUser(User user) async {

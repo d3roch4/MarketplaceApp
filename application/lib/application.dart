@@ -2,8 +2,9 @@ library application;
 
 import 'package:application/events/create_order_whe_cart_closed.dart';
 import 'package:application/marketplace/create_marketplace.dart';
-import 'package:application/store/create_store.dart';
+import 'package:application/store/create_store_command.dart';
 import 'package:application/store/get_stores_by_user.dart';
+import 'package:application/store/last_orders_by_sotre_query.dart';
 import 'package:cqrs_mediator/cqrs_mediator.dart';
 import 'package:get/get.dart';
 
@@ -23,6 +24,7 @@ class Application {
     Get.create(() => CreateOrderWheCartClosed(Get.find(), Get.find()));
     Get.create(() => GetStoresByUserHandle(Get.find(), Get.find()));
     Get.create(() => CreateStoreHandle(Get.find(), Get.find(), Get.find()));
+    Get.create(() => LastOrdersByStoreHandle());
 
     mediator.registerHandler(() => Get.find<AddProductToCartHandle>());
     mediator.registerHandler(() => Get.find<PaymentOfCartHandle>());
@@ -32,5 +34,6 @@ class Application {
     mediator.registerHandler(() => Get.find<CreateStoreHandle>());
     mediator.registerHandler(() => Get.find<GetStoresByUserHandle>());
     mediator.registerHandler(() => Get.find<CreateStoreHandle>());
+    mediator.registerHandler(() => Get.find<LastOrdersByStoreHandle>());
   }
 }

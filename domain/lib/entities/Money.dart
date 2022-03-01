@@ -3,6 +3,8 @@ class Money {
   String currency;
 
   Money({required this.value, required this.currency});
+
+  String toString() => "$currency$value";
 }
 
 class Currencies {

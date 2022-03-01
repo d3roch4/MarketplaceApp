@@ -1,8 +1,8 @@
-import 'package:application/repository/store_repository.dart';
+import 'package:domain/repository/store_repository.dart';
 import 'package:domain/entities/store.dart';
 import 'package:flutter/material.dart';
 import 'package:turbine/utils/global_values.dart';
-import 'package:application/store/create_store.dart';
+import 'package:application/store/create_store_command.dart';
 import 'package:cqrs_mediator/cqrs_mediator.dart';
 import 'package:get/get.dart';
 import 'package:turbine/utils/utils.dart';

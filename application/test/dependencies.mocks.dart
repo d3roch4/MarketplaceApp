@@ -4,7 +4,7 @@
 
 import 'dart:async' as _i7;
 
-import 'package:application/repository/cart_repository.dart' as _i6;
+import 'package:domain/repository/cart_repository.dart' as _i6;
 import 'package:application/services/domain_event_service.dart' as _i3;
 import 'package:application/services/user_manager_service.dart';
 import 'package:domain/entities/cart.dart' as _i4;
@@ -23,7 +23,7 @@ import 'package:mockito/mockito.dart' as _i1;
 class _FakeUser_0 extends _i1.Fake implements _i2.User {}
 
 class _FakeDomainEventService_1 extends _i1.Fake
-    implements _i3.DomainEventService {}
+    implements _i3.ApplicationEventService {}
 
 class _FakeCart_2 extends _i1.Fake implements _i4.Cart {}
 
@@ -50,13 +50,10 @@ class MockCartRepository extends _i1.Mock implements _i6.CartRepository {
   }
 
   @override
-  _i3.DomainEventService get eventService =>
-      (super.noSuchMethod(Invocation.getter(#eventService),
-          returnValue: _FakeDomainEventService_1()) as _i3.DomainEventService);
-  @override
-  set eventService(_i3.DomainEventService? _eventService) =>
-      super.noSuchMethod(Invocation.setter(#eventService, _eventService),
-          returnValueForMissingStub: null);
+  _i3.ApplicationEventService get eventService => (super.noSuchMethod(
+      Invocation.getter(#eventService),
+      returnValue: _FakeDomainEventService_1()) as _i3.ApplicationEventService);
+  
   @override
   _i7.Future<_i4.Cart> getOpenedOrNew(_i2.User? user) =>
       (super.noSuchMethod(Invocation.method(#getOpenedOrNew, [user]),

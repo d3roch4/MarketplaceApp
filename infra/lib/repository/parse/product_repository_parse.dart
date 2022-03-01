@@ -1,10 +1,13 @@
 import 'dart:async';
 
-import 'package:application/repository/product_repository.dart';
+import 'package:domain/repository/product_repository.dart';
 import 'package:domain/entities/product.dart';
+import 'package:domain/services/domain_event_service.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 
 class ProductRepositoryParse extends ProductRepository {
+  ProductRepositoryParse(DomainEventService eventService) : super(eventService);
+
   ParseObject get parseObject => ParseObject('Product');
 
   @override

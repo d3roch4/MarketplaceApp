@@ -1,5 +1,5 @@
 import 'package:application/cart/add_product_to_cart.dart';
-import 'package:application/repository/product_repository.dart';
+import 'package:domain/repository/product_repository.dart';
 import 'package:cqrs_mediator/cqrs_mediator.dart';
 import 'package:domain/entities/cart.dart';
 import 'package:domain/entities/product.dart';

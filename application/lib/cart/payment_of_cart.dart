@@ -1,4 +1,4 @@
-import 'package:application/repository/cart_repository.dart';
+import 'package:domain/repository/cart_repository.dart';
 import 'package:cqrs_mediator/cqrs_mediator.dart';
 import 'package:domain/entities/cart.dart';
 

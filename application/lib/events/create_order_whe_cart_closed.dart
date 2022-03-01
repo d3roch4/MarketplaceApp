@@ -1,5 +1,5 @@
-import 'package:application/repository/cart_repository.dart';
-import 'package:application/repository/order_repository.dart';
+import 'package:domain/repository/cart_repository.dart';
+import 'package:domain/repository/order_repository.dart';
 import 'package:cqrs_mediator/cqrs_mediator.dart';
 import 'package:domain/entities/order.dart';
 import 'package:domain/events/cart_closed_event.dart';

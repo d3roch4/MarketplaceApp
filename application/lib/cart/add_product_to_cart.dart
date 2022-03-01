@@ -1,5 +1,5 @@
-import 'package:application/repository/cart_repository.dart';
-import 'package:application/repository/product_repository.dart';
+import 'package:domain/repository/cart_repository.dart';
+import 'package:domain/repository/product_repository.dart';
 import 'package:application/services/user_manager_service.dart';
 import 'package:cqrs_mediator/cqrs_mediator.dart';
 import 'package:collection/collection.dart';
@@ -23,7 +23,8 @@ class AddProductToCartHandle
 
   @override
   Future call(AddProductToCartCommand command) async {
-    if (userManager.current == null) throw AssertionError('current user is null');
+    if (userManager.current == null)
+      throw AssertionError('current user is null');
     var cart = await cartRepository.getOpenedOrNew(userManager.current!);
     var product = await productRepository.getById(command.productId);
     if (product == null) throw AssertionError('product not found');

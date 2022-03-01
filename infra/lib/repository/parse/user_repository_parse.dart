@@ -1,10 +1,13 @@
 import 'dart:async';
 
-import 'package:application/repository/user_repository.dart';
+import 'package:domain/repository/user_repository.dart';
 import 'package:domain/entities/user.dart';
+import 'package:domain/services/domain_event_service.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 
 class UserRepositoryParse extends UserRepository {
+  UserRepositoryParse(DomainEventService eventService) : super(eventService);
+
   static User objToUser(ParseObject obj) {
     var user =
         User(name: obj['name'], username: obj['username'], email: obj['email']);

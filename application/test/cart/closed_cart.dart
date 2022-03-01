@@ -1,9 +1,9 @@
 import 'package:application/cart/add_product_to_cart.dart';
 import 'package:application/cart/payment_of_cart.dart';
-import 'package:application/repository/cart_repository.dart';
-import 'package:application/repository/order_repository.dart';
-import 'package:application/repository/product_repository.dart';
-import 'package:application/repository/store_repository.dart';
+import 'package:domain/repository/cart_repository.dart';
+import 'package:domain/repository/order_repository.dart';
+import 'package:domain/repository/product_repository.dart';
+import 'package:domain/repository/store_repository.dart';
 import 'package:application/services/user_manager_service.dart';
 import 'package:cqrs_mediator/cqrs_mediator.dart';
 import 'package:domain/entities/address.dart';

@@ -1,7 +1,10 @@
+import 'package:domain/entities/money.dart';
 import 'package:intl/number_symbols_data.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+export 'extensions.dart';
 
 String? getCurrentLocale() {
   final locale = Get.locale;
@@ -12,7 +15,6 @@ String? getCurrentLocale() {
   return locale.languageCode == 'und' ? 'pt_BR' : locale.languageCode;
 }
 
-final formatCurrency = NumberFormat.simpleCurrency(locale: getCurrentLocale());
 final formatDateTime = DateFormat('dd/MM/yyyy HH:mm', getCurrentLocale());
 final formatNumber = NumberFormat.decimalPattern(getCurrentLocale());
 

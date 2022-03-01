@@ -1,13 +1,16 @@
 import 'dart:async';
 
-import 'package:application/repository/order_repository.dart';
-import 'package:application/repository/product_repository.dart';
+import 'package:domain/repository/order_repository.dart';
+import 'package:domain/repository/product_repository.dart';
 import 'package:domain/entities/order.dart';
+import 'package:domain/services/domain_event_service.dart';
 import 'package:get/get.dart';
 import 'package:infra/repository/memory/repository_base_memory.dart';
 
 class OrderRepositoryMemory extends OrderRepository {
-  var wrapperd = RepositoryBaseMemory<Order>();
+  var wrapperd = RepositoryBaseMemory<Order>(Get.find());
+
+  OrderRepositoryMemory(DomainEventService eventService) : super(eventService);
 
   @override
   Future<String> addOrder(Order entity) async {

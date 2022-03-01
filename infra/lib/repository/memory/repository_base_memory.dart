@@ -1,10 +1,13 @@
 import 'dart:math';
 
-import 'package:application/repository/repository_base.dart';
+import 'package:domain/repository/repository_base.dart';
 import 'package:domain/entities/entity.dart';
+import 'package:domain/services/domain_event_service.dart';
 
 class RepositoryBaseMemory<T extends Entity> extends RepositoryBase<T> {
   List<T> memory = [];
+
+  RepositoryBaseMemory(DomainEventService eventService) : super(eventService);
 
   @override
   Future<String> add(T entity) async {
