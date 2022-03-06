@@ -8,7 +8,7 @@ class ProductRepositoryMemory extends RepositoryBaseMemory<Product>
   ProductRepositoryMemory(DomainEventService eventService) : super(eventService);
 
   @override
-  Stream<List<Product>> getAllByStoreId(String storeId) {
+  Stream<List<Product>> getAllProductsByStoreId(String storeId) {
     // TODO: implement getAllByStoreId
     throw UnimplementedError();
   }

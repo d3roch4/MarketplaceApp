@@ -86,7 +86,7 @@ class StorePanelPage extends StatelessWidget {
           ));
 
   void managerProducts() {
-    Get.toNamed('/manager-stores/:id/products', arguments: store);
+    Get.toNamed('/manager-stores/${store!.id!}/products', arguments: store);
   }
 
   Future<List<OrderBuyer>> getListOrder() {

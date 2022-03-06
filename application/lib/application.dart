@@ -3,7 +3,7 @@ library application;
 import 'package:application/events/create_order_whe_cart_closed.dart';
 import 'package:application/marketplace/create_marketplace.dart';
 import 'package:application/store/create_store_command.dart';
-import 'package:application/store/get_stores_by_user.dart';
+import 'package:application/store/get_stores_by_user_query.dart';
 import 'package:application/store/last_orders_by_sotre_query.dart';
 import 'package:cqrs_mediator/cqrs_mediator.dart';
 import 'package:get/get.dart';

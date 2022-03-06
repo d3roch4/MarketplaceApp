@@ -32,9 +32,12 @@ Observe na figura acima que a camada Ingrastructure está nas bordas, nessa cama
 ### Pagamentos
 Algo muito importante em qualquer marketplace é o pagamento, observe que teremos lógica referente a pagamento no núcleo de nosso software e também teremos acesso a processadores e gateways que estaram nas extremidades, além de poder escolher entre vários gateways como Cielo, PagSeguro, INAPay, SafraPay, podemos escolher também entre várias moedas como, dólar, real, euro, bitcoins Ethereum sem precisar alterarmos o código do núcleo.
 
-### Presentation
+### Ui
 A camada de interface com usuário também estará as bordas, podemos escolher entre diversos frameworks, estilos, animações, tipos de tela ou até mesmo via linha de comando sem afetar as regras de negócio da nossa aplicação. 
 Como esse aplicativo será distribuido na PlayStore e AppleStore será utilizado o framework Flutter que além de compilar para iOS, Android, Desktop, também gera para Web em PWA assim as pessoas que receberem o link dos produtos a venda possam visualizar e até efetivar a compra sem precisar instalar antes.
 
 ## Estrutura do projeto
-Veja na wiki como esta sendo estruturado o projeto.
+Segue alguns vídeos explicando a estrutura do projeto:
+  1. https://www.loom.com/share/c5238a2a9b2d423f83c1bef3c84bd731
+  2. https://www.loom.com/share/d61d3a2c504f4740ab5a71bbdafb326d
+  3. https://www.loom.com/share/c5238a2a9b2d423f83c1bef3c84bd731

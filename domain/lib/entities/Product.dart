@@ -7,13 +7,12 @@ class Product extends Entity {
   String storeId;
   Money price = Money(value: 0, currency: Currencies.unknown);
   List<String> media = [];
-  int stockCount;
+  int? stockCount;
   bool physical = true;
 
   Product({
     required this.name,
     required this.storeId,
     required this.description,
-    this.stockCount = 0,
   });
 }

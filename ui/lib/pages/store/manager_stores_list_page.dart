@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:turbine/widgets/loadding_widget.dart';
 import 'package:cqrs_mediator/cqrs_mediator.dart';
-import 'package:application/store/get_stores_by_user.dart';
+import 'package:application/store/get_stores_by_user_query.dart';
 
 class ManagerStoresListPage extends StatelessWidget {
   @override

@@ -17,9 +17,13 @@ class OrderRepositoryMemory extends OrderRepository {
     var repoProducts = Get.find<ProductRepository>();
     for (var pc in entity.products) {
       var produto = await repoProducts.getById(pc.productId);
-      produto!.stockCount -= pc.count;
-      if (produto.stockCount < 0)
-        throw AssertionError('stockCount is less than coun');
+      var stockCount = produto?.stockCount;
+      if (stockCount != null) {
+        stockCount -= pc.count;
+        if (stockCount < 0)
+          throw AssertionError('stockCount is less than coun');
+        produto?.stockCount = stockCount;
+      }
     }
     return wrapperd.add(entity);
   }

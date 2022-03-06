@@ -5,5 +5,5 @@ import 'package:domain/services/domain_event_service.dart';
 abstract class ProductRepository extends RepositoryBase<Product> {
   ProductRepository(DomainEventService eventService) : super(eventService);
 
-  Stream<List<Product>> getAllByStoreId(String storeId);
+  Stream<List<Product>> getAllProductsByStoreId(String storeId);
 }

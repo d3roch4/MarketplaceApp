@@ -28,7 +28,7 @@ class AddProductToCartHandle
     var cart = await cartRepository.getOpenedOrNew(userManager.current!);
     var product = await productRepository.getById(command.productId);
     if (product == null) throw AssertionError('product not found');
-    if (product.stockCount < 1) throw AssertionError('product out of stock');
+    if (product.stockCount != null && product.stockCount! < 1) throw AssertionError('product out of stock');
 
     var exist =
         cart.products.firstWhereOrNull((p) => p.productId == command.productId);

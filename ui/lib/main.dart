@@ -11,7 +11,7 @@ import 'package:turbine/pages/login/sign_up.dart';
 import 'package:turbine/pages/not_found_page.dart';
 import 'package:turbine/pages/store/create_store_page.dart';
 import 'package:turbine/pages/store/edit_store_page.dart';
-import 'package:turbine/pages/store/manager_store_page.dart';
+import 'package:turbine/pages/product/manager_products_list_page.dart';
 import 'package:turbine/pages/store/manager_stores_list_page.dart';
 import 'package:turbine/pages/store/store_panel_page.dart';
 import 'package:turbine/theme_app.dart';
@@ -59,6 +59,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/manager-stores/add', page: () => CreateStorePage()),
         GetPage(name: '/manager-stores/:id', page: () => StorePanelPage()),
         GetPage(name: '/manager-stores/:id/edit', page: () => EditStorePage(Get.parameters['id'])),
+        GetPage(name: '/manager-stores/:id/products', page: () => ManagerProductsListPage()),
       ],
       unknownRoute: GetPage(name: '/not-found', page: () => NotFoundPage()),
     );

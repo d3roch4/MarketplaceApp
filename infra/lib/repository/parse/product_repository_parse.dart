@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:domain/repository/product_repository.dart';
 import 'package:domain/entities/product.dart';
 import 'package:domain/services/domain_event_service.dart';
+import 'package:get/get_rx/src/rx_types/rx_types.dart';
+import 'package:infra/repository/parse/helpers.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 
 class ProductRepositoryParse extends ProductRepository {
@@ -58,8 +60,9 @@ class ProductRepositoryParse extends ProductRepository {
   }
 
   @override
-  Stream<List<Product>> getAllByStoreId(String storeId) {
-    // TODO: implement getAllByStoreId
-    throw UnimplementedError();
+  Stream<List<Product>> getAllProductsByStoreId(String storeId) {
+    QueryBuilder query = QueryBuilder(parseObject);
+    query.whereEqualTo('sotreId', storeId);
+    return createParseLiveListStream(query, objToProduct);
   }
 }

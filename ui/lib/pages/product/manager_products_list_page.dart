@@ -9,7 +9,7 @@ import 'package:get/get.dart';
 import 'package:turbine/widgets/image_product_widget.dart';
 import 'package:turbine/widgets/loadding_widget.dart';
 
-class ManagerStorePage extends StatelessWidget {
+class ManagerProductsListPage extends StatelessWidget {
   var storeRepository = Get.find<StoreRepository>();
   var procutsRepository = Get.find<ProductRepository>();
 
@@ -23,7 +23,7 @@ class ManagerStorePage extends StatelessWidget {
           return Scaffold(
             appBar: AppBar(title: Text(store.name)),
             body: LoaddingWidget.stream<List<Product>>(
-                stream: procutsRepository.getAllByStoreId(store.id!),
+                stream: procutsRepository.getAllProductsByStoreId(store.id!),
                 builder: (products) {
                   if (products == null || products.isEmpty) return empty();
                   return ListView.separated(
@@ -39,9 +39,18 @@ class ManagerStorePage extends StatelessWidget {
                     separatorBuilder: (c, i) => Divider(),
                   );
                 }),
+            floatingActionButton: FloatingActionButton.extended(
+              icon: Icon(Icons.add),
+              label: Text('Add'.tr),
+              onPressed: addProduct,
+            ),
           );
         });
   }
 
   Widget empty() => Center(child: Text('Add yours products'.tr));
+
+  void addProduct() {
+    Get.toNamed('/manager-stores/${Get.parameters['id']!}/products/add');
+  }
 }
