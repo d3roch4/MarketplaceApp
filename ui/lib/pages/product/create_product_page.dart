@@ -9,16 +9,17 @@ import 'package:turbine/utils/utils.dart';
 import 'package:turbine/widgets/loadding_widget.dart';
 import 'package:cqrs_mediator/cqrs_mediator.dart';
 import 'package:turbine/widgets/money_form_field.dart';
+import 'package:infra/services/barcode_search.dart';
 
 class CreateProductPage extends StatelessWidget {
   var formKey = GlobalKey<FormState>();
-  var command = CreateEditProductCommand();
-  var physical = true.obs;
-  var barCode = Field<String>(name: "Code bar");
+  var command = CreateEditProductCommand().obs;
+  var barcode = Field<String>(name: "barcode");
   Timer? timerSearchBarCode;
+  var barcodeSearch = Get.find<BarcodeSearch>();
 
   CreateProductPage() {
-    command.storeId = Get.parameters['store']!;
+    command.value.storeId = Get.parameters['store']!;
   }
 
   @override
@@ -33,47 +34,45 @@ class CreateProductPage extends StatelessWidget {
                   padding: EdgeInsets.all(kPadding),
                   children: [
                     TextFormField(
-                      controller: TextEditingController(text: command.name),
+                      controller: TextEditingController(text: command.value.name),
                       decoration: InputDecoration(labelText: "Name".tr),
-                      onChanged: (v) => command.name,
+                      onChanged: (v) => command.value.name,
                       validator: (v) =>
                           v?.isEmpty ?? true ? "input a name".tr : null,
                     ),
                     TextFormField(
                       controller:
-                          TextEditingController(text: command.description),
+                          TextEditingController(text: command.value.description),
                       decoration: InputDecoration(
                           labelText: "Description".tr,
                           hintText: "Brief summary".tr),
-                      onChanged: (v) => command.name = v,
+                      onChanged: (v) => command.value.name = v,
                     ),
                     MoneyFormField(
-                      money: command.price,
-                      onChange: (v) => command.price = v,
+                      money: command.value.price,
+                      onChange: (v) => command.value.price = v,
                     ),
                     Row(children: [
                       Flexible(
                           child: RadioListTile<bool>(
                               title: Text("Physical".tr),
                               value: true,
-                              groupValue: physical.value,
-                              onChanged: (v) =>
-                                  physical.value = command.physical = v!)),
+                              groupValue: command.value.physical,
+                              onChanged: (v) => command.value.physical = v!)),
                       Flexible(
                           child: RadioListTile<bool>(
                               title: Text("Virtual".tr),
                               value: false,
-                              groupValue: physical.value,
-                              onChanged: (v) =>
-                                  physical.value = command.physical = v!)),
+                              groupValue: command.value.physical,
+                              onChanged: (v) => command.value.physical = v!)),
                     ]),
-                    if (command.physical)
+                    if (command.value.physical)
                       TextFormField(
                         decoration: InputDecoration(
                             labelText: "Stock",
                             hintText: "Quantity in stock".tr),
                         onChanged: (v) =>
-                            command.stockCount = int.tryParse(v) ?? 0,
+                            command.value.stockCount = int.tryParse(v) ?? 0,
                       )
                   ],
                 ))),
@@ -93,7 +92,7 @@ class CreateProductPage extends StatelessWidget {
   }
 
   void save() {
-    if (formKey.currentState!.validate()) Mediator.instance.run(command);
+    if (formKey.currentState!.validate()) Mediator.instance.run(command.value);
     Get.back();
   }
 
@@ -106,8 +105,8 @@ class CreateProductPage extends StatelessWidget {
 
   void findDataByBarCode(String code) {
     timerSearchBarCode?.cancel();
-    timerSearchBarCode = Timer(Duration(microseconds: 500), (){
-
+    timerSearchBarCode = Timer(Duration(microseconds: 500), () async {
+      command.value = (await barcodeSearch.serach(code)) ?? command.value;
     });
   }
 }

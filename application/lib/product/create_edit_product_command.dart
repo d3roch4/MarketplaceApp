@@ -1,4 +1,5 @@
 import 'package:cqrs_mediator/cqrs_mediator.dart';
+import 'package:domain/entities/field.dart';
 import 'package:domain/entities/money.dart';
 import 'package:domain/entities/product.dart';
 import 'package:domain/repository/product_repository.dart';
@@ -12,6 +13,7 @@ class CreateEditProductCommand extends IAsyncCommand {
   int? stockCount;
   bool physical = true;
   List<String> media = [];
+  List<Field> fields = [];
 
   void load(Product product) {
     id = product.id;

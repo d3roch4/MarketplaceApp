@@ -16,6 +16,7 @@ import 'package:infra/repository/memory/store_repository_memory.dart';
 import 'package:infra/repository/parse/marketplace_repository_parse.dart';
 import 'package:infra/repository/parse/product_repository_parse.dart';
 import 'package:infra/repository/parse/store_repository_parse.dart';
+import 'package:infra/services/barcode_search.dart';
 import 'package:infra/services/parse/market_place_manager_service_parse.dart';
 import 'package:infra/services/parse/user_manager_service_parse.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
@@ -35,12 +36,14 @@ class Infra {
       autoSendSessionId: true, // Required for authentication and ACL
     );
     Get.create<StoreRepository>(() => StoreRepositoryParse(Get.find()));
-    Get.create<MarketplaceRepository>(() => MarketplaceRepositoryParse(Get.find()));
+    Get.create<MarketplaceRepository>(
+        () => MarketplaceRepositoryParse(Get.find()));
     Get.create<ProductRepository>(() => ProductRepositoryParse(Get.find()));
     Get.create<DomainEventService>(() => ApplicationEventService());
     Get.lazyPut<MarketplaceManagerService>(
         () => MarketplaceManagerServiceParse(Get.find()));
     Get.lazyPut<UserManagerService>(() => UserManagerServiceParse());
+    Get.create<BarcodeSearch>(() => BarcodeSearchCosmos());
   }
 
   static void useMemory() {
