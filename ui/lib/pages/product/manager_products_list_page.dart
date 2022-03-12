@@ -33,6 +33,7 @@ class ManagerProductsListPage extends StatelessWidget {
                         leading: ImageProductWidget(item),
                         title: Text(item.name),
                         subtitle: Text(item.description),
+                        onTap: ()=> editProduct(item),
                       );
                     },
                     itemCount: products.length,
@@ -52,5 +53,9 @@ class ManagerProductsListPage extends StatelessWidget {
 
   void addProduct() {
     Get.toNamed('/manager-stores/${Get.parameters['id']!}/products/add');
+  }
+
+  void editProduct(Product product) {
+    Get.toNamed('/manager-stores/${Get.parameters['id']!}/products/${product.id}', arguments: product);
   }
 }

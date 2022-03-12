@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 export 'extensions.dart';
+export 'global_values.dart';
 
 String? getCurrentLocale() {
   final locale = Get.locale;
@@ -42,4 +43,5 @@ void desfazerSnack(VoidCallback func, {String msg = 'What to undo?'}) {
     content: Text(msg.tr),
     action: SnackBarAction(label: 'Undo'.tr, onPressed: func),
   ));
+
 }

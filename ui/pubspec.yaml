@@ -41,6 +41,7 @@ dependencies:
     path: ../infra
   adaptive_navigation: ^0.0.5
   sliding_sheet: ^0.5.2
+  ai_barcode: ^3.0.1
   
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

@@ -25,7 +25,7 @@ extension MoneyFormat on Money {
   String toStringFormatted() {
     var formarter = NumberFormat.currency(
       locale: getCurrentLocale(),
-      name: currency,
+      name: currency.code,
     );
     return formarter.format(value);
   }

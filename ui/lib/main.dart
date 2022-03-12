@@ -1,5 +1,4 @@
 import 'dart:ui';
-import 'package:domain/entities/marketplace.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
@@ -9,6 +8,7 @@ import 'package:turbine/pages/main_page.dart';
 import 'package:turbine/pages/login/sign_in.dart';
 import 'package:turbine/pages/login/sign_up.dart';
 import 'package:turbine/pages/not_found_page.dart';
+import 'package:turbine/pages/product/create_product_page.dart';
 import 'package:turbine/pages/store/create_store_page.dart';
 import 'package:turbine/pages/store/edit_store_page.dart';
 import 'package:turbine/pages/product/manager_products_list_page.dart';
@@ -60,6 +60,8 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/manager-stores/:id', page: () => StorePanelPage()),
         GetPage(name: '/manager-stores/:id/edit', page: () => EditStorePage(Get.parameters['id'])),
         GetPage(name: '/manager-stores/:id/products', page: () => ManagerProductsListPage()),
+        GetPage(name: '/manager-stores/:store/products/add', page: () => CreateProductPage()),
+        GetPage(name: '/manager-stores/:store/products/:product', page: () => CreateProductPage()),
       ],
       unknownRoute: GetPage(name: '/not-found', page: () => NotFoundPage()),
     );

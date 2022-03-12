@@ -1,20 +1,16 @@
+import 'package:domain/entities/currency.dart';
+
+export 'currency.dart';
+
 class Money {
-  double value;
-  String currency;
+  int _value;
+  double get value => _value / 100.0;
+  set value(double v) => _value = (v * 100.0).toInt();
 
-  Money({required this.value, required this.currency});
+  Currency currency;
 
-  String toString() => "$currency$value";
-}
+  Money({required double value, required this.currency})
+      : _value = (value * 100).toInt();
 
-class Currencies {
-  static const unknown = '';
-  static const eth = 'ETH';
-  static const ethereum = eth;
-  static const brl = 'BRL';
-  static const real = brl;
-  static const usd = 'USD';
-  static const dollar = usd;
-  static const xbt = 'XBT';
-  static const bitcoin = xbt;
+  String toString() => "${currency.symbol}$value";
 }

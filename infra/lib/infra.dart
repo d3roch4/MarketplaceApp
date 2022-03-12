@@ -30,7 +30,7 @@ class Infra {
       clientKey:
           'dAJRi5lWvNoU26d6DoMzFAHEJvxdhmfOHUIslMuX', // Required for some setups
       coreStore: await CoreStoreSembastImp.getInstance(),
-      debug: true, // When enabled, prints logs to console
+      debug: false, // When enabled, prints logs to console
       liveQueryUrl: 'wss://turbine.b4ap.app', // Required if using LiveQuery
       autoSendSessionId: true, // Required for authentication and ACL
     );

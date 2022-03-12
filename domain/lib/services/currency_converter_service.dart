@@ -1,9 +1,10 @@
+import 'package:domain/entities/currency.dart';
 import 'package:domain/entities/money.dart';
 
 abstract class CurrencyConverterService {
-  Money to(Money money, [String currency = Currencies.ethereum]) {
+  Money to(Money money, [Currency currency = Currency.ethereum]) {
     if (money.currency == currency) return money;
-    if (currency == Currencies.ethereum) return toEthereum(money);
+    if (currency == Currency.ethereum) return toEthereum(money);
 
     var eth = toEthereum(money);
     return fromEthereum(eth, currency);
@@ -11,5 +12,5 @@ abstract class CurrencyConverterService {
 
   Money toEthereum(Money money);
 
-  Money fromEthereum(Money eth, String currency);
+  Money fromEthereum(Money eth, Currency currency);
 }

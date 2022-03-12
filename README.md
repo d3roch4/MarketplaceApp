@@ -40,4 +40,4 @@ Como esse aplicativo será distribuido na PlayStore e AppleStore será utilizado
 Segue alguns vídeos explicando a estrutura do projeto:
   1. https://www.loom.com/share/c5238a2a9b2d423f83c1bef3c84bd731
   2. https://www.loom.com/share/d61d3a2c504f4740ab5a71bbdafb326d
-  3. https://www.loom.com/share/c5238a2a9b2d423f83c1bef3c84bd731
+  3. https://www.loom.com/share/28b693212e834feb8444f30b6c649a13

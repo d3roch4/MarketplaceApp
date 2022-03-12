@@ -11,6 +11,7 @@ import 'package:get/get.dart';
 import 'cart/add_product_to_cart.dart';
 import 'cart/payment_of_cart.dart';
 import 'events/send_email_for_store_whe_cart_closed.dart';
+import 'product/create_edit_product_command.dart';
 
 class Application {
   static void registerHandles() {
@@ -25,6 +26,7 @@ class Application {
     Get.create(() => GetStoresByUserHandle(Get.find(), Get.find()));
     Get.create(() => CreateStoreHandle(Get.find(), Get.find(), Get.find()));
     Get.create(() => LastOrdersByStoreHandle());
+    Get.create(() => CreateEditProductHandle(Get.find()));
 
     mediator.registerHandler(() => Get.find<AddProductToCartHandle>());
     mediator.registerHandler(() => Get.find<PaymentOfCartHandle>());
@@ -35,5 +37,6 @@ class Application {
     mediator.registerHandler(() => Get.find<GetStoresByUserHandle>());
     mediator.registerHandler(() => Get.find<CreateStoreHandle>());
     mediator.registerHandler(() => Get.find<LastOrdersByStoreHandle>());
+    mediator.registerHandler(() => Get.find<CreateEditProductHandle>());
   }
 }
