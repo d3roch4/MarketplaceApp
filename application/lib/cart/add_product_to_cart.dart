@@ -38,7 +38,7 @@ class AddProductToCartHandle
         storeId: product.storeId,
         count: command.count,
         price: product.price,
-        physical: product.stockCheck,
+        stockCheck: product.stockCheck,
       ));
     } else {
       exist.count++;

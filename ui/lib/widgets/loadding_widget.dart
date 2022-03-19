@@ -6,8 +6,10 @@ class LoaddingWidget extends StatelessWidget{
 static Widget future<T>({
     required Future<T> future,
     required Widget Function(T? data) builder,
+    T? initialData
   }) {
     return FutureBuilder<T>(
+      initialData: initialData,
       future: future,
       builder: (c, s) => _builder(c, s, builder),
     );

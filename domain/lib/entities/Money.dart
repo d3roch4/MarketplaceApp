@@ -12,5 +12,5 @@ class Money {
   Money({required double value, required this.currency})
       : _value = (value * 100).toInt();
 
-  String toString() => "${currency.symbol}$value";
+  String toString() => "${currency.code} $value";
 }

@@ -18,7 +18,7 @@ class Cart extends Entity {
       case CartStatus.unknown:
         break;
       case CartStatus.closed:
-        if (products.any((p) => p.physical) && shippingAddress == null) {
+        if (products.any((p) => p.stockCheck) && shippingAddress == null) {
           throw CloseCardWhitoutAddresWithProductPhysicalException();
         }
         domainEvents.add(CartClosedEvent(id!));

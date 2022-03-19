@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 
 Future<Cart> addProductsToCartTest() async {
   var repo = Get.find<ProductRepository>();
-  repo.add(Product(name: 'name', storeId: 'storeId', description: 'description')
+  repo.create(Product(name: 'name', storeId: 'storeId', description: 'description')
     ..id = 'productId'
     ..stockCount = 10);
   var cmd = AddProductToCartCommand('productId', 2);

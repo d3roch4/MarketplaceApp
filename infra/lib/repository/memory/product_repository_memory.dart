@@ -12,4 +12,10 @@ class ProductRepositoryMemory extends RepositoryBaseMemory<Product>
     // TODO: implement getAllByStoreId
     throw UnimplementedError();
   }
+
+  @override
+  Stream<List<Product>> search(double latitude, double longitude, String query) {
+    // TODO: implement search
+    throw UnimplementedError();
+  }
 }

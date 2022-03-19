@@ -17,6 +17,7 @@ import 'package:turbine/pages/store/store_panel_page.dart';
 import 'package:turbine/theme_app.dart';
 import 'package:turbine/utils/messages_translations.dart';
 import 'configure.dart' if (dart.library.html) 'configure_web.dart';
+import 'pages/product/visualizer_product_page.dart';
 
 Future<void> main() async {
   await configureApp();
@@ -62,7 +63,8 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/manager-stores/:id/products', page: () => ManagerProductsListPage()),
         GetPage(name: '/manager-stores/:store/products/add', page: () => CreateProductPage()),
         GetPage(name: '/manager-stores/:store/products/:product', page: () => CreateProductPage()),
-      ],
+        GetPage(name: "/products/:id", page: () => VisualizerProductPage()),
+      ],  
       unknownRoute: GetPage(name: '/not-found', page: () => NotFoundPage()),
     );
   }

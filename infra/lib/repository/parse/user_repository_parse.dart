@@ -16,7 +16,7 @@ class UserRepositoryParse extends UserRepository {
   }
 
   @override
-  Future<String> add(User entity) {
+  Future<String> create(User entity) {
     // TODO: implement add
     throw UnimplementedError();
   }

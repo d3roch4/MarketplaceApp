@@ -1,15 +1,14 @@
 import 'package:adaptive_navigation/adaptive_navigation.dart';
 import 'package:application/services/marketplace_manager_service.dart';
-import 'package:application/services/user_manager_service.dart';
 import 'package:domain/entities/marketplace.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:sliding_sheet/sliding_sheet.dart';
 import 'package:turbine/pages/error_page.dart';
-import 'package:turbine/pages/home_page.dart';
+import 'package:turbine/pages/showcase_page.dart';
 import 'package:turbine/pages/loadding_page.dart';
+import 'package:turbine/pages/main_page_base.dart';
 import 'package:turbine/pages/settings_page.dart';
-import 'package:turbine/utils/global_values.dart';
+import 'package:animations/animations.dart';
 
 class MainPage extends StatelessWidget {
   var selectedIndex = 0.obs;
@@ -25,9 +24,13 @@ class MainPage extends StatelessWidget {
       builder: (marketplace) => marketplace == null
           ? ErrorPage(message: "Martketplace not found".tr)
           : Obx(() {
+            var page = getPage();
               return AdaptiveNavigationScaffold(
-                appBar: AdaptiveAppBar(title: Text(marketplace.name)),
-                body: _body(),
+                appBar: AdaptiveAppBar(
+                  title: Text(marketplace.name),
+                  actions: page.actions(),
+                ),
+                body: page,
                 selectedIndex: selectedIndex.value,
                 onDestinationSelected: (value) => selectedIndex.value = value,
                 destinations: [
@@ -47,10 +50,10 @@ class MainPage extends StatelessWidget {
     );
   }
 
-  Widget _body() {
+  MainPageBase getPage() {
     switch (selectedIndex.value) {
       case 0:
-        return HomePage();
+        return ShowcasePage();
       default:
         return SettingsPage();
     }

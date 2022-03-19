@@ -21,9 +21,9 @@ class CartRepositoryMemory extends CartRepository {
   }
 
   @override
-  Future<String> add(Cart entity) {
+  Future<String> create(Cart entity) {
     entity.id = Random().nextInt(987654321).toString();
-    return memory.add(entity);
+    return memory.create(entity);
   }
 
   @override

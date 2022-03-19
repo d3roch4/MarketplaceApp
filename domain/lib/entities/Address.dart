@@ -1,7 +1,7 @@
 class Address {
   String zipCode;
   String street;
-  String ditrict;
+  String district;
   String city;
   String state;
   String coutry;
@@ -13,9 +13,19 @@ class Address {
     required this.street,
     required this.city,
     required this.coutry,
-    required this.ditrict,
+    required this.district,
     required this.state,
     required this.latitude,
     required this.longitude,
   });
+
+  static Address empty = Address(
+      zipCode: '',
+      street: '',
+      city: '',
+      coutry: '',
+      district: '',
+      state: '',
+      latitude: 0,
+      longitude: 0);
 }

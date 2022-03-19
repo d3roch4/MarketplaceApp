@@ -26,6 +26,8 @@ extension MoneyFormat on Money {
     var formarter = NumberFormat.currency(
       locale: getCurrentLocale(),
       name: currency.code,
+      symbol: currency.symbol,
+      decimalDigits: currency.decimalDigits,
     );
     return formarter.format(value);
   }

@@ -19,17 +19,19 @@ Future<void> closeCartTest() async {
       name: 'name',
       marketplaceId: 'marketplaceId',
       emailToNotifications: 'sellers@outher-organization.com',
-      id: 'storeId');
-  storeRepo.add(store);
+      id: 'storeId',
+      address: Address.empty);
+  storeRepo.create(store);
   store = Store(
       name: 'name',
       marketplaceId: 'marketplaceId',
       emailToNotifications: 'sellers@organization.com',
-      id: 'storeId2');
-  storeRepo.add(store);
+      id: 'storeId2',
+      address: Address.empty);
+  storeRepo.create(store);
 
   var productRepo = Get.find<ProductRepository>();
-  productRepo.add(
+  productRepo.create(
       Product(name: 'name', storeId: 'storeId2', description: 'description')
         ..id = 'productId2'
         ..stockCount = 10);
@@ -41,7 +43,7 @@ Future<void> closeCartTest() async {
       street: 'street',
       city: 'city',
       coutry: 'coutry',
-      ditrict: 'ditrict',
+      district: 'ditrict',
       state: 'state',
       latitude: 0,
       longitude: 0);

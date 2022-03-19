@@ -10,7 +10,7 @@ class RepositoryBaseMemory<T extends Entity> extends RepositoryBase<T> {
   RepositoryBaseMemory(DomainEventService eventService) : super(eventService);
 
   @override
-  Future<String> add(T entity) async {
+  Future<String> create(T entity) async {
     memory.add(entity);
     return Random().nextInt(9999).toString();
   }

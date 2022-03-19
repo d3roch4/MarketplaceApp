@@ -27,6 +27,6 @@ class CreateMarketplaceHandle
     marketplace.domains = command.domains;
     marketplace.subDomain = command.subDomain;
 
-    await repository.add(marketplace);
+    await repository.create(marketplace);
   }
 }

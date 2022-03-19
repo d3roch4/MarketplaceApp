@@ -2,6 +2,7 @@ library application;
 
 import 'package:application/events/create_order_whe_cart_closed.dart';
 import 'package:application/marketplace/create_marketplace.dart';
+import 'package:application/product/list_nearby_products_query.dart';
 import 'package:application/store/create_store_command.dart';
 import 'package:application/store/get_stores_by_user_query.dart';
 import 'package:application/store/last_orders_by_sotre_query.dart';
@@ -27,6 +28,7 @@ class Application {
     Get.create(() => CreateStoreHandle(Get.find(), Get.find(), Get.find()));
     Get.create(() => LastOrdersByStoreHandle());
     Get.create(() => CreateEditProductHandle(Get.find()));
+    Get.create(() => ListNearbyProductsHandle(Get.find(), Get.find()));
 
     mediator.registerHandler(() => Get.find<AddProductToCartHandle>());
     mediator.registerHandler(() => Get.find<PaymentOfCartHandle>());
@@ -38,5 +40,6 @@ class Application {
     mediator.registerHandler(() => Get.find<CreateStoreHandle>());
     mediator.registerHandler(() => Get.find<LastOrdersByStoreHandle>());
     mediator.registerHandler(() => Get.find<CreateEditProductHandle>());
+    mediator.registerHandler(() => Get.find<ListNearbyProductsHandle>());
   }
 }

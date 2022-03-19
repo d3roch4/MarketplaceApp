@@ -7,7 +7,7 @@ class CreateProductCommand extends IAsyncCommand {
   String storeId = "";
   String name = "";
   String description = "";
-  Money price= Money(value: 0, currency: "");
+  Money price= Money(value: 0, currency: Currency.unknown);
 }
 
 class CreateProductHandle extends IAsyncCommandHandler<CreateProductCommand> {

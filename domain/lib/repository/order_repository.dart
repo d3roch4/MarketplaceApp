@@ -12,7 +12,7 @@ abstract class OrderRepository extends RepositoryBase<Order> {
   Future<Order> getByCartId(String id);
 
   @override
-  Future<String> add(Order entity) async {
+  Future<String> create(Order entity) async {
     var id = await addOrder(entity);
     entity.domainEvents.add(OrderCreateEvent(id));
     return id;

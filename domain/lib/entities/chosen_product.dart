@@ -5,12 +5,12 @@ class ChosenProduct {
   String storeId;
   int count;
   Money price;
-  bool physical;
+  bool stockCheck;
 
   ChosenProduct(
       {required this.productId,
       required this.count,
       required this.price,
-      required this.physical,
+      required this.stockCheck,
       required this.storeId});
 }

@@ -4,7 +4,8 @@ import 'package:domain/entities/money.dart';
 import 'package:domain/repository/product_repository.dart';
 import 'package:domain/entities/product.dart';
 import 'package:domain/services/domain_event_service.dart';
-import 'package:infra/repository/parse/helpers.dart';
+import 'package:get/get_rx/src/rx_types/rx_types.dart';
+import 'package:infra/repository/parse/helpers_parse.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 
 class ProductRepositoryParse extends ProductRepository {
@@ -13,7 +14,7 @@ class ProductRepositoryParse extends ProductRepository {
   ParseObject get parseObject => ParseObject('Product');
 
   @override
-  Future<String> add(Product product) async {
+  Future<String> create(Product product) async {
     var obj = parseObject;
     setObjProduct(obj, product);
 
@@ -24,13 +25,13 @@ class ProductRepositoryParse extends ProductRepository {
   Product objToProduct(ParseObject obj) {
     var product = Product(
         name: obj['name'],
-        storeId: obj['storeId'],
+        storeId: obj['store']['objectId'],
         description: obj['description']);
     product.media = (obj['media'] as List).map((e) => e.toString()).toList();
-    product.stockCheck = obj['physical'];
+    product.stockCheck = obj['stockCheck'];
     product.price = MoneyJson.fromJson(obj['price']);
     product.stockCount = obj['stockCount'];
-
+    product.id = obj.objectId;
     return product;
   }
 
@@ -53,16 +54,45 @@ class ProductRepositoryParse extends ProductRepository {
     obj.set('name', product.name);
     obj.set('description', product.description);
     obj.set('media', product.media);
-    obj.set('physical', product.stockCheck);
-    obj.set('price', product.price.toJson());
+    obj.set('stockCheck', product.stockCheck);
     obj.set('stockCount', product.stockCount);
-    obj.set('storeId', product.storeId);
+    obj.set('price', product.price.toJson());
+    obj.set('store', ParseObject('Store')..objectId = product.storeId);
   }
 
   @override
   Stream<List<Product>> getAllProductsByStoreId(String storeId) {
     QueryBuilder query = QueryBuilder(parseObject)
-      ..whereEqualTo('storeId', storeId);
+      ..whereMatchesQuery(
+          'store',
+          QueryBuilder(ParseObject('Store'))
+            ..whereEqualTo('objectId', storeId));
     return createParseLiveListStream(query, objToProduct);
+  }
+
+  QueryBuilder createQueryBuildTextFull(String query) {
+    if (query.isEmpty) return QueryBuilder(parseObject);
+    var obj = parseObject;
+    return QueryBuilder.or(obj, [
+      QueryBuilder(obj)..whereContainsWholeWord('name', query),
+      QueryBuilder(obj)..whereContainsWholeWord('description', query),
+    ]);
+  }
+
+  @override
+  Stream<List<Product>> search(
+      double latitude, double longitude, String query) {
+    var queryBuild = QueryBuilder.or(parseObject, [
+      createQueryBuildTextFull(query)
+        ..whereEqualTo('stockCheck', true)
+        ..whereGreaterThan('stockCount', 0),
+      createQueryBuildTextFull(query)..whereNotEqualTo('stockCheck', true)
+    ]);
+    // queryBuild.whereMatchesQuery(
+    //     'store',
+    //     QueryBuilder(ParseObject('Store'))
+    //       ..whereNear('address.geoPoint',
+    //         ParseGeoPoint(latitude: latitude, longitude: longitude)));
+    return createParseLiveListStream(queryBuild, objToProduct);
   }
 }

@@ -1,13 +1,9 @@
 import 'package:application/services/user_manager_service.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:turbine/pages/main_page_base.dart';
 
-class SettingsPage extends StatefulWidget {
-  @override
-  State<SettingsPage> createState() => _SettingsPageState();
-}
-
-class _SettingsPageState extends State<SettingsPage> {
+class SettingsPage extends MainPageBase {
   var userManager = Get.find<UserManagerService>();
 
   @override

@@ -1,10 +1,11 @@
+import 'package:domain/entities/address.dart';
 import 'package:domain/repository/store_repository.dart';
 import 'package:domain/entities/user.dart';
 import 'package:domain/entities/store.dart';
 import 'package:domain/services/domain_event_service.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
-import 'helpers.dart';
+import 'helpers_parse.dart';
 
 class StoreRepositoryParse extends StoreRepository {
   StoreRepositoryParse(DomainEventService eventService) : super(eventService);
@@ -12,14 +13,14 @@ class StoreRepositoryParse extends StoreRepository {
   ParseObject get parseObject => ParseObject('Store');
 
   @override
-  Future<String> add(Store entity) async {
+  Future<String> create(Store entity) async {
     var obj = storeToObj(entity);
     await obj.save();
     return obj.objectId!;
   }
 
   @override
-  Future<Store?> getById(String id) async{
+  Future<Store?> getById(String id) async {
     var obj = await parseObject.getObject(id);
     if (obj.result != null) return objToStore(obj.result);
     return null;
@@ -59,6 +60,7 @@ class StoreRepositoryParse extends StoreRepository {
         name: obj.get('name'),
         marketplaceId: obj.get('marketplaceId') ?? '',
         emailToNotifications: obj.get('emailToNotifications'),
+        address: Address.empty,
         id: obj.objectId);
     return store;
   }
@@ -69,6 +71,8 @@ class StoreRepositoryParse extends StoreRepository {
     obj.set('name', store.name);
     obj.set('emailToNotifications', store.emailToNotifications);
     obj.set('employees', store.employees.map((e) => e.toJson()).toList());
+    obj.set('marketplaceId', store.marketplaceId);
+    obj.set('address', store.address.toJson());
     return obj;
   }
 }

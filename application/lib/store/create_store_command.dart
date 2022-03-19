@@ -1,3 +1,4 @@
+import 'package:domain/entities/address.dart';
 import 'package:domain/repository/store_repository.dart';
 import 'package:application/services/marketplace_manager_service.dart';
 import 'package:application/services/user_manager_service.dart';
@@ -34,6 +35,7 @@ class CreateStoreHandle extends IAsyncCommandHandler<CreateStoreCommand> {
         name: command.name,
         marketplaceId: marketplace!.id!,
         emailToNotifications: command.email,
+        address: Address.empty,
         employees: [Employee(userId: user!.id!, type: EmployeeType.owner)]);
     return await storeRepository.save(store);
   }

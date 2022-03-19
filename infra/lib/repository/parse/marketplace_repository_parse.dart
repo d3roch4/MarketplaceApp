@@ -12,7 +12,7 @@ class MarketplaceRepositoryParse extends MarketplaceRepository {
   ParseObject get parseObject => ParseObject('Marketplace');
 
   @override
-  Future<String> add(Marketplace entity) async {
+  Future<String> create(Marketplace entity) async {
     var obj = marketplaceToObj(entity);
     var resp = await obj.save();
     if (!resp.success)

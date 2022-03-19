@@ -25,7 +25,7 @@ class OrderRepositoryMemory extends OrderRepository {
         produto?.stockCount = stockCount;
       }
     }
-    return wrapperd.add(entity);
+    return wrapperd.create(entity);
   }
 
   @override

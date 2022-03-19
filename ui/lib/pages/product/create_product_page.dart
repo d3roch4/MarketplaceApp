@@ -36,9 +36,8 @@ class CreateProductPage extends StatelessWidget {
                     TextFormField(
                       controller: TextEditingController(text: command.value.name),
                       decoration: InputDecoration(labelText: "Name".tr),
-                      onChanged: (v) => command.value.name,
-                      validator: (v) =>
-                          v?.isEmpty ?? true ? "input a name".tr : null,
+                      onChanged: (v) => command.value.name = v,
+                      validator: (v) => v?.isEmpty ?? true ? "input a name".tr : null,
                     ),
                     TextFormField(
                       controller:
@@ -46,7 +45,7 @@ class CreateProductPage extends StatelessWidget {
                       decoration: InputDecoration(
                           labelText: "Description".tr,
                           hintText: "Brief summary".tr),
-                      onChanged: (v) => command.value.name = v,
+                      onChanged: (v) => command.value.description = v,
                     ),
                     MoneyFormField(
                       money: command.value.price,
@@ -77,11 +76,14 @@ class CreateProductPage extends StatelessWidget {
                   ],
                 ))),
         floatingActionButton: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             FloatingActionButton.small(
+              heroTag: "miniFab",
               child: Icon(Icons.bar_chart),
               onPressed: readCode,
             ),
+            SizedBox(height: kPadding),
             FloatingActionButton.extended(
               icon: Icon(Icons.save),
               label: Text('Save'.tr),

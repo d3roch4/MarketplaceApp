@@ -8,17 +8,21 @@ class LoaddingPage extends StatelessWidget {
   static Widget future<T>({
     required Future<T> future,
     required Widget Function(T? data) builder,
+    T? initialData,
   }) {
     return FutureBuilder<T>(
+      initialData: initialData,
       future: future,
-      builder: (c, s) => _builder(c, s, builder),
+      builder: (c, s) => _builder(c, s, builder, initialData),
     );
   }
 
   static _builder<T>(
-    BuildContext c, AsyncSnapshot<T> snap, Widget Function(T? data) builder
+    BuildContext c, AsyncSnapshot<T> snap, Widget Function(T? data) builder, T? initialData
   ) {
-    return snap.connectionState == ConnectionState.waiting
+    return initialData != null
+      ? builder(initialData) 
+      : snap.connectionState == ConnectionState.waiting
         ? LoaddingPage()
         : snap.hasError
             ? ErrorPage(
@@ -29,10 +33,12 @@ class LoaddingPage extends StatelessWidget {
   static Widget stream<T>({
     required Stream<T> stream,
     required Widget Function(T? data) builder,
+    T? initialData
   }) {
     return StreamBuilder<T>(
+      initialData: initialData,
       stream: stream,
-      builder: (c, s) => _builder(c, s, builder),
+      builder: (c, s) => _builder(c, s, builder, initialData),
     );
   }
 

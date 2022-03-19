@@ -9,12 +9,12 @@ abstract class RepositoryBase<T extends Entity> {
   RepositoryBase(this.eventService);
 
   Future<T?> getById(String id);
-  Future<String> add(T entity);
+  Future<String> create(T entity);
   Future<void> update(T entity);
 
   Future<void> save(T entity) async {
     if (entity.id == null) {
-      var id = await add(entity);
+      var id = await create(entity);
       entity.id = id;
     } else {
       await update(entity);
