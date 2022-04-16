@@ -12,5 +12,17 @@ class Money {
   Money({required double value, required this.currency})
       : _value = (value * 100).toInt();
 
+  bool operator <(Money other) {
+    if (this.currency.code != other.currency.code)
+      throw ArgumentError('Currency not is egual');
+    return this._value < other._value;
+  }
+
+  bool operator >(Money other) {
+    if (this.currency.code != other.currency.code)
+      throw ArgumentError('Currency not is egual');
+    return this._value > other._value;
+  }
+
   String toString() => "${currency.code} $value";
 }

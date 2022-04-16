@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:domain/model/cart_stores_products.dart';
 import 'package:domain/repository/cart_repository.dart';
 import 'package:domain/entities/user.dart';
 import 'package:domain/entities/cart.dart';
@@ -9,7 +10,7 @@ import 'package:infra/repository/memory/repository_base_memory.dart';
 class CartRepositoryMemory extends CartRepository {
   late RepositoryBaseMemory<Cart> memory;
 
-  CartRepositoryMemory(DomainEventService eventService) : super(eventService){
+  CartRepositoryMemory(DomainEventService eventService) : super(eventService) {
     memory = RepositoryBaseMemory<Cart>(eventService);
   }
 
@@ -34,5 +35,17 @@ class CartRepositoryMemory extends CartRepository {
   @override
   Future update(Cart entity) {
     return memory.update(entity);
+  }
+
+  @override
+  Future<CartStoresProducts> getCartStoresProductsByCart(String cartId) {
+    // TODO: implement getCartStoresProductsByCart
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<Cart>> getCartsByBuyer(String buyerId) {
+    // TODO: implement getCartsByBuyer
+    throw UnimplementedError();
   }
 }

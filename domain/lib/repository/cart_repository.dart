@@ -1,3 +1,4 @@
+import 'package:domain/model/cart_stores_products.dart';
 import 'package:domain/repository/repository_base.dart';
 import 'package:domain/entities/cart.dart';
 import 'package:domain/entities/user.dart';
@@ -17,4 +18,8 @@ abstract class CartRepository extends RepositoryBase<Cart> {
   }
 
   Future<Cart?> findOpenedByUser(User user);
+
+  Future<CartStoresProducts> getCartStoresProductsByCart(String cartId);
+
+  Future<List<Cart>> getCartsByBuyer(String buyerId);
 }

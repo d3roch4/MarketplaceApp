@@ -1,7 +1,6 @@
 import 'package:application/product/list_nearby_products_query.dart';
 import 'package:domain/entities/product.dart';
 import 'package:flutter/material.dart';
-import 'package:animations/animations.dart';
 import 'package:turbine/pages/main_page_base.dart';
 import 'package:turbine/utils/utils.dart';
 import 'package:turbine/widgets/loadding_widget.dart';

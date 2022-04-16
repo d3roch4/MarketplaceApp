@@ -1,3 +1,4 @@
+import 'package:domain/entities/cart.dart';
 import 'package:domain/entities/order.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
 import 'package:intl/intl.dart';
@@ -17,6 +18,19 @@ extension StatusOrderString on StatusOrder {
         return "Processing".tr;
       case StatusOrder.canceled:
         return "Canceled".tr;
+    }
+  }
+}
+
+extension StatusCartToString on CartStatus {
+  String toStringFormatted() {
+    switch (this) {
+      case CartStatus.unknown:
+        return 'Unknown ';
+      case CartStatus.opened:
+        return 'Opened';
+      case CartStatus.closed:
+        return 'Closed';
     }
   }
 }

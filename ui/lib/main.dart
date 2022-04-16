@@ -4,6 +4,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:turbine/pages/admin/create_edit_marketplace_page.dart';
 import 'package:turbine/pages/admin/manager_marketplaces_page.dart';
+import 'package:turbine/pages/cart/edit_cart_page.dart';
 import 'package:turbine/pages/main_page.dart';
 import 'package:turbine/pages/login/sign_in.dart';
 import 'package:turbine/pages/login/sign_up.dart';
@@ -64,6 +65,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/manager-stores/:store/products/add', page: () => CreateProductPage()),
         GetPage(name: '/manager-stores/:store/products/:product', page: () => CreateProductPage()),
         GetPage(name: "/products/:id", page: () => VisualizerProductPage()),
+        GetPage(name: '/carts/opened', page: ()=> EditCartPage())
       ],  
       unknownRoute: GetPage(name: '/not-found', page: () => NotFoundPage()),
     );

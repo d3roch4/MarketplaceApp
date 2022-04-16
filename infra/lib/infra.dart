@@ -3,6 +3,7 @@ library infra;
 import 'package:application/services/location_search_service.dart';
 import 'package:application/services/user_manager_service.dart';
 import 'package:domain/events/domain_event.dart';
+import 'package:domain/services/currency_converter_service.dart';
 import 'package:get/get.dart';
 import 'package:domain/repository/cart_repository.dart';
 import 'package:domain/repository/order_repository.dart';
@@ -19,6 +20,7 @@ import 'package:infra/repository/parse/marketplace_repository_parse.dart';
 import 'package:infra/repository/parse/product_repository_parse.dart';
 import 'package:infra/repository/parse/store_repository_parse.dart';
 import 'package:infra/services/barcode_search.dart';
+import 'package:infra/services/currency_converter_fake_service.dart';
 import 'package:infra/services/location_search_service_impl.dart';
 import 'package:infra/services/parse/market_place_manager_service_parse.dart';
 import 'package:infra/services/parse/user_manager_service_parse.dart';
@@ -42,13 +44,14 @@ class Infra {
     Get.create<MarketplaceRepository>(
         () => MarketplaceRepositoryParse(Get.find()));
     Get.create<ProductRepository>(() => ProductRepositoryParse(Get.find()));
-    Get.create<CartRepository>(() => CartRepositoryParse(Get.find()));
+    Get.create<CartRepository>(() => CartRepositoryParse(Get.find(), Get.find(), Get.find()));
     Get.create<DomainEventService>(() => ApplicationEventService());
     Get.lazyPut<MarketplaceManagerService>(
         () => MarketplaceManagerServiceParse(Get.find()));
     Get.lazyPut<UserManagerService>(() => UserManagerServiceParse());
     Get.create<BarcodeSearch>(() => BarcodeSearchCosmos());
     Get.create<LocationSearchService>(() => LocationSearchServiceImpl());
+    Get.create<CurrencyConverterService>(() => CurrencyConverterFakeService());
   }
 
   static void useMemory() {

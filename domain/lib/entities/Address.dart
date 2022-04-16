@@ -28,4 +28,10 @@ class Address {
       state: '',
       latitude: 0,
       longitude: 0);
+
+  @override
+  String toString() {
+    var result = '$street, $district, $city, $state, $coutry';
+    return result;
+  }
 }

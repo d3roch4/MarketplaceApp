@@ -12,11 +12,14 @@ import 'package:turbine/widgets/loadding_widget.dart';
 class ManagerProductsListPage extends StatelessWidget {
   var storeRepository = Get.find<StoreRepository>();
   var procutsRepository = Get.find<ProductRepository>();
+  String id;
+
+  ManagerProductsListPage() : id = Get.parameters['id'] ?? '';
 
   @override
   Widget build(BuildContext context) {
     return LoaddingPage.future<Store?>(
-        future: storeRepository.getById(Get.parameters['id'] ?? ''),
+        future: storeRepository.getById(id),
         builder: (store) {
           if (store == null)
             return ErrorPage(message: 'id of store not found'.tr);
@@ -33,7 +36,7 @@ class ManagerProductsListPage extends StatelessWidget {
                         leading: ImageProductWidget(item),
                         title: Text(item.name),
                         subtitle: Text(item.description),
-                        onTap: ()=> editProduct(item),
+                        onTap: () => editProduct(item),
                       );
                     },
                     itemCount: products.length,
@@ -52,10 +55,12 @@ class ManagerProductsListPage extends StatelessWidget {
   Widget empty() => Center(child: Text('Add yours products'.tr));
 
   void addProduct() {
-    Get.toNamed('/manager-stores/${Get.parameters['id']!}/products/add');
+    Get.toNamed('/manager-stores/$id/products/add');
   }
 
   void editProduct(Product product) {
-    Get.toNamed('/manager-stores/${Get.parameters['id']!}/products/${product.id}', arguments: product);
+    Get.toNamed(
+        '/manager-stores/$id/products/${product.id}',
+        arguments: product);
   }
 }

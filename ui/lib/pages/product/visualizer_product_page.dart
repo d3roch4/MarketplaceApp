@@ -1,12 +1,14 @@
 import 'package:application/cart/add_product_to_cart.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:domain/entities/cart.dart';
 import 'package:domain/entities/product.dart';
 import 'package:domain/repository/product_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:turbine/pages/loadding_page.dart';
 import 'package:turbine/pages/not_found_page.dart';
 import 'package:turbine/utils/utils.dart';
+import 'package:turbine/widgets/create_botton_app_bar.dart';
 import 'package:turbine/widgets/loadding_widget.dart';
 import 'package:get/get.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
@@ -14,6 +16,7 @@ import 'package:cqrs_mediator/cqrs_mediator.dart';
 
 class VisualizerProductPage extends StatelessWidget {
   Product? _product;
+  var adding = false.obs;
 
   @override
   Widget build(BuildContext context) {
@@ -38,19 +41,17 @@ class VisualizerProductPage extends StatelessWidget {
                 Text(product.description)
               ],
             ),
-            floatingActionButton: FloatingActionButton.extended(
-              label: Text("Buy".tr),
-              icon: Icon(Icons.add_shopping_cart),
-              onPressed: addToChart,
-            ),
+            floatingActionButton: Obx(() => adding.value == true
+                ? CircularProgressIndicator()
+                : FloatingActionButton.extended(
+                    label: Text("Buy".tr),
+                    icon: Icon(Icons.add_shopping_cart),
+                    onPressed: addToChart,
+                  )),
             floatingActionButtonLocation:
                 FloatingActionButtonLocation.endDocked,
-            bottomNavigationBar: BottomAppBar(
-                child: Padding(
-              padding: EdgeInsets.all(10),
-              child: Text(product.price.toStringFormatted(),
-                  style: Get.textTheme.headline6),
-            )),
+            bottomNavigationBar: createBottomAppBar(Text(product.price.toStringFormatted(),
+              style: Get.textTheme.headline6)),
           );
         });
   }
@@ -96,8 +97,12 @@ class VisualizerProductPage extends StatelessWidget {
     );
   }
 
-  void addToChart() {
-    Mediator.instance.run(AddProductToCartCommand(_product!.id!, 1));
+  Future<void> addToChart() async {
+    adding.value = true;
+    var command = AddProductToCartCommand(_product!.id!, 1);
+    var cart = await Mediator.instance.run(command) as Cart;
+    await Get.toNamed('/carts/opened', arguments: cart);
+    adding.value = false;
   }
 
   void share() {}

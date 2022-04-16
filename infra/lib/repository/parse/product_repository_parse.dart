@@ -16,29 +16,16 @@ class ProductRepositoryParse extends ProductRepository {
   @override
   Future<String> create(Product product) async {
     var obj = parseObject;
-    setObjProduct(obj, product);
+    product.setParseObject(obj);
 
     await obj.save();
     return product.id = obj.objectId!;
   }
 
-  Product objToProduct(ParseObject obj) {
-    var product = Product(
-        name: obj['name'],
-        storeId: obj['store']['objectId'],
-        description: obj['description']);
-    product.media = (obj['media'] as List).map((e) => e.toString()).toList();
-    product.stockCheck = obj['stockCheck'];
-    product.price = MoneyJson.fromJson(obj['price']);
-    product.stockCount = obj['stockCount'];
-    product.id = obj.objectId;
-    return product;
-  }
-
   @override
   Future<Product?> getById(String id) async {
     var obj = await parseObject.getObject(id);
-    if (obj.result != null) return objToProduct(obj.result);
+    if (obj.result != null) return ProductParse.fromParse(obj.result);
     return null;
   }
 
@@ -46,18 +33,8 @@ class ProductRepositoryParse extends ProductRepository {
   Future<void> update(Product entity) async {
     var obj = parseObject;
     obj.objectId = entity.id;
-    setObjProduct(obj, entity);
+    entity.setParseObject(obj);
     await obj.save();
-  }
-
-  void setObjProduct(ParseObject obj, Product product) {
-    obj.set('name', product.name);
-    obj.set('description', product.description);
-    obj.set('media', product.media);
-    obj.set('stockCheck', product.stockCheck);
-    obj.set('stockCount', product.stockCount);
-    obj.set('price', product.price.toJson());
-    obj.set('store', ParseObject('Store')..objectId = product.storeId);
   }
 
   @override
@@ -67,7 +44,7 @@ class ProductRepositoryParse extends ProductRepository {
           'store',
           QueryBuilder(ParseObject('Store'))
             ..whereEqualTo('objectId', storeId));
-    return createParseLiveListStream(query, objToProduct);
+    return createParseLiveListStream(query, ProductParse.fromParse);
   }
 
   QueryBuilder createQueryBuildTextFull(String query) {
@@ -93,6 +70,6 @@ class ProductRepositoryParse extends ProductRepository {
     //     QueryBuilder(ParseObject('Store'))
     //       ..whereNear('address.geoPoint',
     //         ParseGeoPoint(latitude: latitude, longitude: longitude)));
-    return createParseLiveListStream(queryBuild, objToProduct);
+    return createParseLiveListStream(queryBuild, ProductParse.fromParse);
   }
 }
